@@ -31,8 +31,12 @@ function onEnabled() {
         });
     }
     myController = WebMidi.inputs[0];
+    myController.channels[1].addListener("noteon", allNotes);
     myController.channels[1].addListener("controlchange", allCC);
-
+}
+// gets called when a MIDI note is played
+function allNotes(e){
+    console.log("note number = "+e.data[1])
 }
 // gets called when a MIDI control change message is intercepted
 function allCC(e) {
